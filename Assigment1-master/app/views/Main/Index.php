@@ -57,11 +57,8 @@
         </nav>
         <div class="container">
             <h1> Welcome to the Site Landing Page</h1>
-
-
-
-
-
+            <p>Welcome to our project where we will be developping a web application for the health insurance department
+                of ACME Insurance Solutions, centered around improving the claim submission and review process.</p>
         </div>
     </div>
 </body>

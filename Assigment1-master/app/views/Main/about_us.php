@@ -85,6 +85,15 @@
             <img src="/../../images/thinker.jpg" alt="Team Member 2">
             <div class="caption">Olivier Leone<br>Critical Thinker</div>
         </div>
+        <div class="team-member">
+            <img src="/../../images/leader.jpg" alt="Team Member 1">
+            <div class="caption">Alexander Cécile<br>The Leader</div>
+        </div>
+
+        <div class="team-member">
+            <img src="/../../images/helper.jpg" alt="Team Member 2">
+            <div class="caption">Saâd Salmane<br>The Helper</div>
+        </div>
     </div>
 
 
