@@ -1,4 +1,6 @@
 <?php
+// Counter.php
+
 namespace app\models;
 
 class Counter
@@ -8,43 +10,30 @@ class Counter
     public function __construct()
     {
         // Path to the counter file
-        $filename = 'resources/counter.txt';
+        $filename = __DIR__ . "/../../resources/counter.txt";
 
         // Check if the counter file exists
         if (file_exists($filename)) {
-            // Open the file for reading
-            $fileHandle = fopen($filename, "r");
-
-            // Lock the file for exclusive reading
-            flock($fileHandle, LOCK_SH);
-
-            // Read the file contents into the $count variable
-            $count = json_decode(fread($fileHandle, filesize($filename)))->count;
-
-            // Release the lock
-            flock($fileHandle, LOCK_UN);
-
-            // Close the file
-            fclose($fileHandle);
+            // Read count from the file
+            $countData = file_get_contents($filename);
+            $countJson = json_decode($countData, true);
+            $this->count = isset($countJson['count']) ? (int) $countJson['count'] : 0;
         } else {
             // If the file doesn't exist, set count to 0
-            $count = '{"count":0}';
+            $this->count = 0;
         }
-
-        // Decode the JSON and copy the count property
-        $this->count = json_decode($count)->count;
     }
 
     public function increment()
     {
-        // Increment the count property by 1
+        // Increment the count
         $this->count++;
     }
 
     public function write()
     {
         // Path to the counter file
-        $filename = 'resources/counter.txt';
+        $filename = __DIR__ . "/../../resources/counter.txt";
 
         // Encode the counter object as JSON
         $count = json_encode(['count' => $this->count]);
@@ -70,13 +59,6 @@ class Counter
         // Convert the counter object to a string (JSON representation)
         return json_encode(['count' => $this->count]);
     }
-
-
-    public function getCount()
-    {
-        return $this->count;
-    }
-
-
 }
+
 ?>

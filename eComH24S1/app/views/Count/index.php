@@ -1,17 +1,28 @@
-<?php
-// Include the Counter model
-require_once 'app/models/Counter.php';
+<!DOCTYPE html>
+<html>
 
-// Create a new Counter object
-$counter = new \app\models\Counter();
+<head>
+    <title>Page Load Counter</title>
 
-// Increment the count for each page visit
-$counter->increment();
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
 
-// Write the updated count to the file
-$counter->write();
+<body>
+    <div class="container">
+        <h1>Page Load Counter</h1>
+        <p>Loading count: <span id="loadCount"></span></p>
+    </div>
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Include Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.getJSON('/Count/index', function (data) {
+                $('#loadCount').text(data.count);
+            });
+        });
+    </script>
+</body>
 
-// Return the count as JSON-encoded data
-header('Content-Type: application/json');
-echo $counter;
-?>
+</html>

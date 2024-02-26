@@ -26,7 +26,6 @@ class Message extends \app\core\Controller
 
         // Call the read method of the Message model to retrieve messages
         $messages = \app\models\Message::getAll();
-        var_dump($messages);
         
         // Pass the messages to the view for display
         $this->view('Message/read', ['messages' => $messages]);

@@ -21,3 +21,4 @@ class CountController
         echo $counter;
     }
 }
+?>

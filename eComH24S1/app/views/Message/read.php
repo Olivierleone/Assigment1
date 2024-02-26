@@ -8,6 +8,10 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
         nav {
             position: fixed;
@@ -48,6 +52,7 @@
     <div class="container">
         <h1>Message Listing</h1>
         <p>This page displays a listing of all messages.</p>
+        <?php var_dump($data) ?>
         <?php if (empty($data)): ?>
             <div class="alert alert-info" role="alert">
                 No messages found.
@@ -61,7 +66,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($data as $message): ?>
+                    <?php foreach ($data as $index => $message): ?>
                         <tr>
                             <td>
                                 <?= $message->email ?>
@@ -77,7 +82,23 @@
     </div>
     <p><a href="/Main/index" class="btn btn-secondary">Back to Home</a></p>
     </div>
-    <!-- Bootstrap JS (optional) -->
+    <script>
+        $(document).ready(function () {
+            // AJAX request to fetch the counter
+            $.ajax({
+                url: 'index.php?controller=Count&action=index',
+                method: 'POST',
+                success: function (response) {
+                    // Display the counter at the bottom right corner of the page
+                    $('#counter').text('Page Access Count: ' + response.count);
+                },
+                error: function () {
+                    // Handle error if counter fetch fails
+                    console.log('Failed to fetch counter');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
