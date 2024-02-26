@@ -1,13 +1,15 @@
 <?php
+
 namespace app\core;
 
 class App
 {
     function __construct()
     {
-
+        // Retrieve the URL from the query parameters
         $url = isset($_GET['url']) ? $_GET['url'] : '';
 
+        // Define the routes mapping URLs to controller methods
         $routes = [
             'Main/index' => 'MainController,index',
             'Main/about_us' => 'MainController,about_us',
@@ -15,19 +17,29 @@ class App
             'Message/read' => 'Message,read',
         ];
 
-        //one by one compare the url to resolve the route
+        // Iterate through each route to find a match for the requested URL
         foreach ($routes as $routeUrl => $controllerMethod) {
-            if ($url == $routeUrl) {//match the route
-                //run the route
+
+            // Check if the URL matches the route
+            if ($url == $routeUrl) { 
+
+                // Extract the controller and method from the route definition
                 [$controller, $method] = explode(',', $controllerMethod);
+
+                // Build the fully qualified controller class name
                 $controller = '\\app\\controllers\\' . $controller;
+
+                // Create an instance of the controller
                 $controller = new $controller();
+
+                // Call the specified method of the controller
                 $controller->$method();
-                //make sure that we don't run a second route
+                
+                // Stop further processing as we found a matching route
                 break;
             }
         }
-
-
     }
 }
+
+?>

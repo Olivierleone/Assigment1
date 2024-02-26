@@ -6,6 +6,7 @@ use app\models\Counter;
 
 class CountController
 {
+    //method that will create counter object and call the model
     public function index()
     {
         // Create a new Counter model object
