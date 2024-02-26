@@ -74,7 +74,8 @@
                 </tbody>
             </table>
         <?php endif; ?>
-        <p><a href="/Main/index" class="btn btn-secondary">Back to Home</a></p>
+    </div>
+    <p><a href="/Main/index" class="btn btn-secondary">Back to Home</a></p>
     </div>
     <!-- Bootstrap JS (optional) -->
 </body>

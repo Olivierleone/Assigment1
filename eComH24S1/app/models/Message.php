@@ -6,7 +6,6 @@ class Message
 
 	public $email;
 	public $message;
-
 	public $IP;
 
 	public function __construct($object = null)
@@ -16,7 +15,7 @@ class Message
 		//TODO: avoid this running when there is no parameter
 		$this->email = $object->email;
 		$this->message = $object->message;
-		$this->IP = $object->ip;
+		$this->IP = $object->IP;
 	}
 	public function insert()
 	{
@@ -62,18 +61,36 @@ class Message
 		return $messages;
 	}
 
-	public static function getAll(){
-		//read the file and return the collection of people (all Person records)
-		$filename = __DIR__ . "/../../resources/messages.txt";
-		$records = file($filename);
-		//TODO: process the JSON strings into objects
-		foreach ($records as $key => $value) {
-			//can I typecase objects in PHP?
-			$object = json_decode($value);
-			$person = new \app\models\Message($object);
-			$records[$key] = $person;
+	public static function getAll()
+	{
+		// Define the path to the log file
+		$logFilePath = __DIR__ . "/../../resources/messages.txt";
+
+		// Read messages from the log file
+		$lines = file($logFilePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+		// Initialize an empty array to store parsed messages
+		$messages = [];
+
+		// Iterate over each line and parse JSON data into objects
+		foreach ($lines as $line) {
+			// Decode JSON data into an associative array
+			$data = json_decode($line);
+
+			// Check if decoding was successful and data exists
+			if ($data !== null && isset($data->email) && isset($data->message)) {
+				// Create a new Message object and add it to the messages array
+				$message = new Message();
+				$message->email = $data->email;
+				$message->message = $data->message;
+				$messages[] = $message;
+			}
 		}
-		return $records;
+
+		// Return the array of parsed messages
+		return $messages;
 	}
+
+
 
 }

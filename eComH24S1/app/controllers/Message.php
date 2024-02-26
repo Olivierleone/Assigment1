@@ -11,23 +11,23 @@ class Message extends \app\core\Controller
         $this->view('Message/contact');
     }
 
-
     public function read()
     {
-        // Create a new Message object
-        $message = new \app\models\Message();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Create a new Message object with form data
+            $message = new \app\models\Message();
+            $message->email = $_POST['email'] ?? '';
+            $message->message = $_POST['message'] ?? '';
+            $message->IP = $_SERVER['REMOTE_ADDR'];
 
-        // Set the properties from the form data
-        $message->email = $_POST['email'];
-        $message->message = $_POST['message'];
-        $message->IP = $_SERVER['REMOTE_ADDR'];
+            // Insert the message into the file
+            $message->insert();
+        }
 
-        // Insert the message into the log file
-        $message->insert();
-
-        // Read all messages from the log file
+        // Call the read method of the Message model to retrieve messages
         $messages = \app\models\Message::getAll();
-
+        var_dump($messages);
+        
         // Pass the messages to the view for display
         $this->view('Message/read', ['messages' => $messages]);
     }
