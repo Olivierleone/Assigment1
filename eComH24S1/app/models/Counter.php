@@ -1,5 +1,4 @@
 <?php
-
 namespace app\models;
 
 class Counter
@@ -9,18 +8,18 @@ class Counter
     public function __construct()
     {
         // Path to the counter file
-        $counterFilePath = __DIR__ . "/../../resources/counter.txt";
+        $filename = 'resources/counter.txt';
 
         // Check if the counter file exists
-        if (file_exists($counterFilePath)) {
+        if (file_exists($filename)) {
             // Open the file for reading
-            $fileHandle = fopen($counterFilePath, "r");
+            $fileHandle = fopen($filename, "r");
 
             // Lock the file for exclusive reading
             flock($fileHandle, LOCK_SH);
 
             // Read the file contents into the $count variable
-            $count = json_decode(fread($fileHandle, filesize($counterFilePath)))->count;
+            $count = json_decode(fread($fileHandle, filesize($filename)))->count;
 
             // Release the lock
             flock($fileHandle, LOCK_UN);
@@ -45,13 +44,13 @@ class Counter
     public function write()
     {
         // Path to the counter file
-        $counterFilePath = __DIR__ . "/../../resources/counter.txt";
+        $filename = 'resources/counter.txt';
 
         // Encode the counter object as JSON
         $count = json_encode(['count' => $this->count]);
 
         // Open the counter file for writing
-        $fileHandle = fopen($counterFilePath, "w");
+        $fileHandle = fopen($filename, "w");
 
         // Lock the file for exclusive writing
         flock($fileHandle, LOCK_EX);
@@ -71,5 +70,13 @@ class Counter
         // Convert the counter object to a string (JSON representation)
         return json_encode(['count' => $this->count]);
     }
+
+
+    public function getCount()
+    {
+        return $this->count;
+    }
+
+
 }
 ?>

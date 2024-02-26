@@ -68,7 +68,7 @@
             <li><a href="/Main/index">Landing Page</a></li>
             <li><a href="/Main/about_us">About Us</a></li>
             <li><a href="/Message/contact">Contact Us</a></li>
-            <li><a href="/Message/viewmessage">See the messages we get</a></li>
+            <li><a href="/Message/read">See the messages we get</a></li>
 
         </ul>
     </nav>

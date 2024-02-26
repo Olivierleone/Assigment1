@@ -1,5 +1,2 @@
-{"email":"yo@gmail.com","message":"tyt"}
-{"email":"yo@gmail.com","message":"tyt"}
-{"email":"yo@gmail.com","message":"tyt"}
-{"email":null,"message":null}
-{"email":null,"message":null}
+{"email":"asdfasdf@asdfasdf.com","message":"asdfasd afsdfas dfas fasdf","IP":"172.17.0.1"}
+{"email":"amer@gmail.com","message":"gasdfas dfasdf asdf","IP":"172.17.0.1"}

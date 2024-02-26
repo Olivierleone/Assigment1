@@ -51,26 +51,29 @@
             <li><a href="/Main/index">Landing Page</a></li>
             <li><a href="/Main/about_us">About Us</a></li>
             <li><a href="/Message/contact">Contact Us</a></li>
-            <li><a href="/Message/viewmessage">See the messages we get</a></li>
+            <li><a href="/Message/read">See the messages we get</a></li>
 
         </ul>
     </nav>
-    <div id='container'>
+    <div class="container">
         <h1>Contact Us</h1>
         <p>This is the contact us form page of our website.</p>
-       <form method='post' action='/Message/viewmessage'>
-            <!-- utility class used for adding margin-bottom to an element. third scallingis present -->
-          <div class="form-group">
-                <label>Email address:<input type="email" class="form-control" name="email" placeholder="jondoe@email.com" /></label>
-            </div>
-            <div class="form-group">
-                <label>message:<input type="text" class="form-control" name="message" placeholder="Doe" /></label>
-            </div>
+        <form method='post' action='/Message/read'>
 
-            <div class="form-group">
-          <input type="submit" name="action" value="Register" />
+            <div class="mb-3">
+                <label>Email address:<input type="email" id="email" class="form-control" name="email"
+                        autocomplete="off" placeholder="jondoe@email.com" /></label>
 
-        </div>
+
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" id="message" name="message"
+                    placeholder="Enter your message here"></textarea>
+
+
+            </div>
+            <input type="submit" name="action" id="action" value="Submit" class="btn btn-primary">
         </form>
 
     </div>
